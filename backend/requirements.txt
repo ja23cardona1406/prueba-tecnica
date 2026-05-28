@@ -1,0 +1,12 @@
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+python-dotenv
+supabase
+stripe
+httpx
+sentence-transformers
+numpy
+pypdf
+python-multipart
