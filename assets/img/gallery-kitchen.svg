@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img">
+  <defs>
+    <linearGradient id="wall" x1="0" x2="1">
+      <stop offset="0" stop-color="#efe4d4"/>
+      <stop offset="1" stop-color="#d7c8b4"/>
+    </linearGradient>
+    <linearGradient id="steel" x1="0" x2="1">
+      <stop offset="0" stop-color="#969188"/>
+      <stop offset=".5" stop-color="#f7f1e6"/>
+      <stop offset="1" stop-color="#8d877f"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#wall)"/>
+  <rect y="500" width="1200" height="300" fill="#2b2925"/>
+  <rect x="72" y="112" width="340" height="290" rx="18" fill="#183a34"/>
+  <rect x="448" y="112" width="300" height="290" rx="18" fill="#ebe0cf"/>
+  <rect x="786" y="112" width="340" height="290" rx="18" fill="#183a34"/>
+  <rect x="330" y="328" width="540" height="82" rx="20" fill="#1b1a17"/>
+  <g transform="translate(342 360)">
+    <rect x="0" y="0" width="516" height="352" rx="30" fill="url(#steel)"/>
+    <rect x="46" y="158" width="424" height="150" rx="20" fill="#161514"/>
+    <rect x="74" y="185" width="368" height="92" rx="16" fill="#31342f"/>
+    <rect x="36" y="22" width="444" height="100" rx="18" fill="#111"/>
+    <g fill="#22201d">
+      <circle cx="118" cy="72" r="32"/>
+      <circle cx="204" cy="72" r="24"/>
+      <circle cx="284" cy="72" r="38"/>
+      <circle cx="378" cy="72" r="26"/>
+      <circle cx="252" cy="112" r="22"/>
+    </g>
+    <g fill="#bd8435">
+      <circle cx="118" cy="72" r="18"/>
+      <circle cx="204" cy="72" r="14"/>
+      <circle cx="284" cy="72" r="22"/>
+      <circle cx="378" cy="72" r="15"/>
+      <circle cx="252" cy="112" r="13"/>
+    </g>
+  </g>
+</svg>
