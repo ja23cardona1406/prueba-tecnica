@@ -15,7 +15,19 @@
       document.querySelector("meta[name='theme-color']")?.setAttribute("content", theme === "dark" ? "#111411" : "#0f6b5d");
     }
 
-    const currentTheme = document.documentElement.dataset.theme || "light";
+    // Load saved theme from localStorage or use system preference
+    let currentTheme = "light";
+    try {
+      const saved = localStorage.getItem(THEME_KEY);
+      if (saved) {
+        currentTheme = saved;
+      } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        currentTheme = "dark";
+      }
+    } catch (error) {
+      // localStorage can fail in strict privacy contexts; use light theme as default
+    }
+    
     applyTheme(currentTheme);
 
     toggle.addEventListener("click", () => {
@@ -166,33 +178,10 @@
     const form = document.getElementById("lead-form");
     const status = document.getElementById("lead-status");
     if (!form || !status) return;
-    const apiBaseUrl = String(window.BERTOLLI_API_URL || "").replace(/\/$/, "");
 
     function setStatus(message, state) {
       status.textContent = message;
       status.dataset.state = state || "";
-    }
-
-    function hasBackend() {
-      return (
-        apiBaseUrl &&
-        (apiBaseUrl.startsWith("https://") ||
-          apiBaseUrl.startsWith("http://localhost") ||
-          apiBaseUrl.startsWith("http://127.0.0.1"))
-      );
-    }
-
-    async function saveLeadWithBackend(lead) {
-      if (!hasBackend()) return { success: false, source: "local-fallback" };
-
-      const response = await fetch(`${apiBaseUrl}/api/leads`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(lead)
-      });
-
-      if (!response.ok) throw new Error("Lead endpoint failed");
-      return response.json();
     }
 
     form.addEventListener("submit", async (event) => {
@@ -213,21 +202,16 @@
 
       submit.disabled = true;
       submit.setAttribute("aria-busy", "true");
-      setStatus("Enviando solicitud...", "");
+      setStatus("Procesando solicitud...", "");
 
       try {
-        const result = await saveLeadWithBackend(lead);
-
-        if (result.success && result.source === "supabase") {
-          setStatus("Solicitud enviada y guardada en Supabase.", "success");
-        } else {
-          setStatus("Solicitud registrada localmente. Te contactaremos con la cotizacion.", "success");
-        }
-
+        // Simulate processing delay
+        await new Promise(resolve => setTimeout(resolve, 800));
+        
+        setStatus("Solicitud recibida. Te contactaremos a " + lead.email + " con la cotización.", "success");
         form.reset();
       } catch (error) {
-        setStatus("Solicitud recibida localmente. El backend no esta disponible en este momento.", "success");
-        form.reset();
+        setStatus("Error al procesar la solicitud. Intenta de nuevo.", "error");
       } finally {
             submit.disabled = false;
             submit.removeAttribute("aria-busy");

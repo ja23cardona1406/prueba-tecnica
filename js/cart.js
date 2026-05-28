@@ -2,7 +2,6 @@
   "use strict";
 
   const STORAGE_KEY = "bertolli-cart-v1";
-  const API_BASE_URL = String(window.BERTOLLI_API_URL || "").replace(/\/$/, "");
 
   const PRODUCT = {
     id: "bertolli-pro-900",
@@ -47,15 +46,6 @@
     if (!elements.feedback) return;
     elements.feedback.textContent = message;
     elements.feedback.dataset.state = state || "";
-  }
-
-  function hasBackend() {
-    return (
-      API_BASE_URL &&
-      (API_BASE_URL.startsWith("https://") ||
-        API_BASE_URL.startsWith("http://localhost") ||
-        API_BASE_URL.startsWith("http://127.0.0.1"))
-    );
   }
 
   function renderCart() {
@@ -111,40 +101,6 @@
       return;
     }
 
-    if (hasBackend()) {
-      try {
-        elements.checkout.disabled = true;
-        elements.checkout.setAttribute("aria-busy", "true");
-        setFeedback("Preparando checkout seguro...", "");
-
-        const leadEmail = document.getElementById("lead-email")?.value.trim() || null;
-        const response = await fetch(`${API_BASE_URL}/api/checkout/create-session`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            product_id: PRODUCT.id,
-            quantity: cart.quantity,
-            customer_email: leadEmail
-          })
-        });
-
-        if (!response.ok) throw new Error("Checkout endpoint failed");
-
-        const data = await response.json();
-        if (data && typeof data.url === "string") {
-          window.location.assign(data.url);
-          return;
-        }
-
-        throw new Error("Checkout URL missing");
-      } catch (error) {
-        setFeedback("No se pudo abrir Stripe. Continuamos con cotizacion local.", "error");
-      } finally {
-        elements.checkout.disabled = false;
-        elements.checkout.removeAttribute("aria-busy");
-      }
-    }
-
     const leadMessage = document.getElementById("lead-message");
     if (leadMessage && !leadMessage.value.trim()) {
       leadMessage.value = `Quiero solicitar compra de ${cart.quantity} unidad(es) de Bertolli Pro 900. Subtotal: ${formatMoney(subtotal())} COP.`;
@@ -155,7 +111,7 @@
       behavior: prefersReducedMotion ? "auto" : "smooth",
       block: "start"
     });
-    setFeedback("Completa tus datos para continuar a cotizacion.", "success");
+    setFeedback("Completa tus datos en el formulario de cotización para continuar.", "success");
   }
 
   function bindCart() {
