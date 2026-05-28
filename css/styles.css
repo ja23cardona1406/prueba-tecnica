@@ -2526,3 +2526,67 @@ button:disabled:hover,
     font-size: 16px;
   }
 }
+
+/* ────────────────────────────────────────────────
+   Dark mode
+   ──────────────────────────────────────────────── */
+
+/* Define shadow variables (used throughout but previously undefined) */
+:root {
+  --shadow: 0 2px 16px rgba(10, 9, 5, 0.08), 0 1px 4px rgba(10, 9, 5, 0.04);
+  --shadow-strong: 0 6px 32px rgba(10, 9, 5, 0.14), 0 3px 10px rgba(10, 9, 5, 0.08);
+}
+
+/* Smooth theme switch */
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #0f0e0b;
+  --surface: #191710;
+  --ink: #d8cfbf;
+  --ink-strong: #f0e8d8;
+  --muted: #7a7068;
+  --line: rgba(201, 168, 76, 0.2);
+  --line-strong: rgba(201, 168, 76, 0.38);
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.35), 0 2px 8px rgba(0, 0, 0, 0.2);
+  --shadow-strong: 0 8px 40px rgba(0, 0, 0, 0.55), 0 4px 16px rgba(0, 0, 0, 0.32);
+  --success: #7db86a;
+  --danger: #c9655a;
+}
+
+/* Override components that reference hard-coded light palette tokens */
+
+[data-theme="dark"] .feature-card:hover {
+  background: color-mix(in srgb, var(--surface) 88%, #a88a36 12%);
+}
+
+[data-theme="dark"] .testimonial-card:hover {
+  background: color-mix(in srgb, var(--surface) 88%, #a88a36 12%);
+}
+
+[data-theme="dark"] .spec-table thead th {
+  background: color-mix(in srgb, var(--surface) 72%, #a88a36 28%);
+  color: var(--gold);
+}
+
+[data-theme="dark"] .form-row input,
+[data-theme="dark"] .form-row textarea {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--line-strong);
+}
+
+[data-theme="dark"] .form-row input::placeholder,
+[data-theme="dark"] .form-row textarea::placeholder {
+  color: var(--muted);
+}
+
+[data-theme="dark"] .form-row input:focus,
+[data-theme="dark"] .form-row textarea:focus {
+  background: color-mix(in srgb, var(--surface) 90%, #a88a36 10%);
+  border-color: var(--accent);
+}
