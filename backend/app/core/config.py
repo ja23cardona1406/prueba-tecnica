@@ -13,7 +13,7 @@ class Settings(BaseSettings):
     )
 
     port: int = 8000
-    allowed_origins: str = "http://localhost:5500,http://127.0.0.1:5500"
+    allowed_origins: str = "http://localhost:5500,http://127.0.0.1:5500,https://prueba-tecnica-e5sn.onrender.com"
 
     supabase_url: str = ""
     supabase_anon_key: str = ""

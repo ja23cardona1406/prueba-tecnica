@@ -80,7 +80,7 @@
 
   async function askBackend(question) {
     const controller = new AbortController();
-    const timeout = window.setTimeout(() => controller.abort(), 45000);
+    const timeout = window.setTimeout(() => controller.abort(), 90000);
 
     try {
       const response = await fetch(`${API_BASE_URL}/api/assistant`, {
