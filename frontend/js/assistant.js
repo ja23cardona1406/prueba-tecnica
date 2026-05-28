@@ -26,14 +26,23 @@
   ];
 
   const elements = {};
-  const API_BASE_URL = (window.BERTOLLI_API_BASE_URL || "http://localhost:8005").replace(/\/$/, "");
+  const API_BASE_URL = (
+    window.BERTOLLI_API_BASE_URL ||
+    window.BERTOLLI_CONFIG?.API_BASE_URL ||
+    (
+      window.location.hostname === "localhost" ||
+      window.location.hostname === "127.0.0.1"
+        ? "http://localhost:8005"
+        : "https://prueba-tecnica-xe6q.onrender.com"
+    )
+  ).replace(/\/$/, "");
 
-  function normalize(text) {
-    return text
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[̀-ͯ]/g, "");
-  }
+    function normalize(text) {
+      return text
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[̀-ͯ]/g, "");
+    }
 
   function localAnswer(question) {
     const normalized = normalize(question);
