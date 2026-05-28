@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import asyncio
 import logging
 import re
 from typing import Any
@@ -258,7 +259,7 @@ async def search_documents(
             "error": None,
         }
 
-    query_embedding = embed_query(query)
+    query_embedding = await asyncio.to_thread(embed_query, query)
     print("RAG: using Supabase vector search")
     print("RAG embedding length:", len(query_embedding))
     print("RAG threshold:", match_threshold)

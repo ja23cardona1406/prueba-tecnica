@@ -1,3 +1,4 @@
+import asyncio
 import logging
 import unicodedata
 from typing import Any
@@ -112,14 +113,21 @@ async def answer_message(
     rag_source = "local-corpus"
     rag_matches: list[dict[str, Any]] = []
     try:
-        rag_matches = await local_rag_search(
-            message,
-            match_count=settings.rag_top_k,
-            match_threshold=settings.rag_min_score,
+        rag_matches = await asyncio.wait_for(
+            local_rag_search(
+                message,
+                match_count=settings.rag_top_k,
+                match_threshold=settings.rag_min_score,
+            ),
+            timeout=20.0,
         )
         context = build_context(rag_matches) if rag_matches else build_context(local_matches(message))
         if rag_matches and rag_matches[0].get("document_source") != "local-corpus":
             rag_source = "supabase-vector"
+    except asyncio.TimeoutError:
+        logger.warning("RAG search timed out (20s); using local corpus fallback.")
+        rag_matches = local_matches(message)
+        context = build_context(rag_matches)
     except Exception:
         logger.exception("RAG search failed; using local corpus fallback.")
         rag_matches = local_matches(message)
