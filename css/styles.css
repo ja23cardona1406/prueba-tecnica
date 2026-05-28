@@ -1697,3 +1697,171 @@ textarea {
     grid-template-columns: 1fr 1.4fr 1fr;
   }
 }
+
+/* Assistant widget */
+.assistant-widget {
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  z-index: 120;
+}
+
+.assistant-toggle {
+  width: 60px;
+  height: 60px;
+  min-width: 60px;
+  min-height: 60px;
+  border-radius: 999px;
+  background: var(--gold);
+  color: var(--black);
+  border: 0;
+  box-shadow: 0 8px 32px rgba(201, 168, 76, 0.35);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.assistant-toggle:hover {
+  background: var(--gold-light);
+  color: var(--black);
+  transform: scale(1.06);
+  border-color: transparent;
+}
+
+.assistant-panel {
+  position: absolute;
+  right: 0;
+  bottom: 80px;
+  display: grid;
+  width: min(380px, calc(100vw - 48px));
+  max-height: min(620px, calc(100vh - 140px));
+  overflow: hidden;
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  background: var(--dark);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
+}
+
+.assistant-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: var(--mid);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+  padding: 1.1rem 1.3rem;
+}
+
+.assistant-panel__header h2 {
+  margin: 0;
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.assistant-panel__header .icon-button {
+  width: 30px;
+  height: 30px;
+  border-color: rgba(201, 168, 76, 0.25);
+  color: var(--gold);
+}
+
+.assistant-panel__header .icon-button:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--black);
+}
+
+.assistant-messages {
+  display: grid;
+  gap: 0.9rem;
+  max-height: 360px;
+  overflow-y: auto;
+  padding: 1.4rem;
+  background: var(--dark);
+}
+
+.assistant-message {
+  display: grid;
+  max-width: 88%;
+  padding: 0.8rem 1rem;
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+.assistant-message--bot {
+  justify-self: start;
+  background: var(--mid);
+  color: var(--cream);
+}
+
+.assistant-message--user {
+  justify-self: end;
+  background: var(--gold);
+  color: var(--black);
+  font-weight: 500;
+}
+
+.assistant-message p {
+  margin: 0;
+}
+
+.assistant-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.55rem;
+  background: var(--charcoal);
+  border-top: 1px solid rgba(201, 168, 76, 0.12);
+  padding: 1rem;
+}
+
+.assistant-form input {
+  min-width: 0;
+  background: var(--dark);
+  border: 1px solid rgba(201, 168, 76, 0.18);
+  color: var(--cream);
+  font-size: 0.98rem;
+  padding: 0.65rem 0.85rem;
+  outline: none;
+  transition: border-color 0.25s ease;
+}
+
+.assistant-form input:focus {
+  border-color: var(--gold);
+}
+
+.assistant-form input::placeholder {
+  color: rgba(240, 232, 216, 0.35);
+  font-style: italic;
+}
+
+.assistant-form .button {
+  min-height: 44px;
+  padding: 0.6rem 1.4rem;
+  font-size: 0.68rem;
+}
+
+/* Screen reader only utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+@media (max-width: 520px) {
+  .assistant-widget {
+    right: 16px;
+    bottom: 16px;
+  }
+
+  .assistant-panel {
+    width: calc(100vw - 32px);
+    max-height: calc(100vh - 120px);
+  }
+
+  .assistant-form {
+    grid-template-columns: 1fr;
+  }
+}

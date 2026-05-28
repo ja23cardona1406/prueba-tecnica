@@ -736,30 +736,86 @@
     </footer>
 
     <dialog class="lightbox" id="lightbox" aria-labelledby="lightbox-title">
-  <div class="lightbox__body">
-    <div class="lightbox__top">
-      <h2 id="lightbox-title">Galería Bertolli Pro 900</h2>
+      <div class="lightbox__body">
+        <div class="lightbox__top">
+          <h2 id="lightbox-title">Galería Bertolli Pro 900</h2>
 
-      <button class="icon-button" type="button" id="lightbox-close" aria-label="Cerrar galería">
-        ✕
-      </button>
-    </div>
+          <button class="icon-button" type="button" id="lightbox-close" aria-label="Cerrar galería">
+            ✕
+          </button>
+        </div>
 
-    <img
-      class="lightbox__image"
-      id="lightbox-image"
-      src="assets/img/bertolli-pro-900-hero.jpg"
-      alt=""
-    >
+        <img
+          class="lightbox__image"
+          id="lightbox-image"
+          src="assets/img/bertolli-pro-900-hero.jpg"
+          alt=""
+        >
 
-    <div class="lightbox__controls">
-      <button class="button button--ghost" type="button" id="lightbox-prev">Anterior</button>
-      <button class="button button--ghost" type="button" id="lightbox-next">Siguiente</button>
-    </div>
-  </div>
-</dialog>
+        <div class="lightbox__controls">
+          <button class="button button--ghost" type="button" id="lightbox-prev">Anterior</button>
+          <button class="button button--ghost" type="button" id="lightbox-next">Siguiente</button>
+        </div>
+      </div>
+    </dialog>
+      <aside class="assistant-widget" aria-label="Asesor inteligente Bertolli">
+        <section
+          class="assistant-panel"
+          id="assistant-panel"
+          aria-labelledby="assistant-title"
+          hidden
+        >
+          <div class="assistant-panel__header">
+            <h2 id="assistant-title">Asesor inteligente Bertolli</h2>
+
+            <button
+              class="icon-button"
+              type="button"
+              id="assistant-close"
+              aria-label="Cerrar asesor"
+            >
+              ✕
+            </button>
+          </div>
+
+          <div class="assistant-messages" id="assistant-messages" aria-live="polite">
+            <article class="assistant-message assistant-message--bot">
+              <p>
+                Hola, soy el asesor Bertolli. Puedo ayudarte con precio, garantía,
+                dimensiones, materiales, instalación, tipo de gas y beneficios.
+              </p>
+            </article>
+          </div>
+
+          <form class="assistant-form" id="assistant-form">
+            <label class="sr-only" for="assistant-input">Mensaje para el asesor</label>
+
+            <input
+              id="assistant-input"
+              name="message"
+              autocomplete="off"
+              placeholder="Pregunta por el producto"
+              required
+            >
+
+            <button class="button button--primary" type="submit">Enviar</button>
+          </form>
+        </section>
+
+        <button
+          class="icon-button assistant-toggle"
+          type="button"
+          id="assistant-toggle"
+          aria-controls="assistant-panel"
+          aria-expanded="false"
+          aria-label="Abrir asesor inteligente"
+        >
+          💬
+        </button>
+      </aside>
 
 <script src="js/main.js"></script>
 <script src="js/cart.js"></script>
+<script src="js/assistant.js"></script>
   </body>
 </html>
