@@ -26,12 +26,13 @@
   ];
 
   const elements = {};
+  const API_BASE_URL = (window.BERTOLLI_API_BASE_URL || "http://localhost:8005").replace(/\/$/, "");
 
   function normalize(text) {
     return text
       .toLowerCase()
       .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "");
+      .replace(/[̀-ͯ]/g, "");
   }
 
   function localAnswer(question) {
@@ -68,6 +69,29 @@
     }
   }
 
+  async function askBackend(question) {
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 45000);
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/assistant`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: question }),
+        signal: controller.signal
+      });
+
+      if (!response.ok) throw new Error(`Assistant backend failed with ${response.status}`);
+
+      const data = await response.json();
+      console.log("Assistant backend response:", data);
+      console.log(`Source: ${data.source} | Model: ${data.model_used} | RAG: ${data.rag_source} | Fallback: ${data.fallback_used}`);
+      return data;
+    } finally {
+      window.clearTimeout(timeout);
+    }
+  }
+
   async function handleSubmit(event) {
     event.preventDefault();
 
@@ -79,13 +103,17 @@
     elements.submit.disabled = true;
     elements.submit.setAttribute("aria-busy", "true");
 
-    const pending = addMessage("bot", "Procesando pregunta...");
+    const pending = addMessage("bot", "Consultando asistente inteligente...");
     const pendingText = pending.querySelector("p");
 
     try {
-      // Simulate processing delay for better UX
-      await new Promise(resolve => setTimeout(resolve, 300));
-      pendingText.textContent = localAnswer(question);
+      try {
+        const data = await askBackend(question);
+        pendingText.textContent = data.answer ?? "El backend respondió sin contenido.";
+      } catch (error) {
+        console.warn("Backend unavailable. Using local assistant fallback.", error);
+        pendingText.textContent = localAnswer(question);
+      }
     } finally {
       elements.submit.disabled = false;
       elements.submit.removeAttribute("aria-busy");
