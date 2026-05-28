@@ -1,0 +1,69 @@
+services:
+  - type: web
+    name: bertolli-pro-900-backend
+    env: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PORT
+        value: 8000
+      - key: ALLOWED_ORIGINS
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_ANON_KEY
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_PRICE_ID
+        sync: false
+      - key: STRIPE_SUCCESS_URL
+        sync: false
+      - key: STRIPE_CANCEL_URL
+        sync: false
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: OPENROUTER_BASE_URL
+        value: https://openrouter.ai/api/v1/chat/completions
+      - key: CHAT_PRIMARY_LLM
+        value: google/gemini-2.0-flash-exp:free
+      - key: CHAT_FALLBACK_LLM
+        value: mistralai/mistral-small-24b-instruct-2501:free
+      - key: CHAT_ENHANCEMENT_LLM
+        value: deepseek/deepseek-r1-distill-llama-70b:free
+      - key: CHAT_JUDGE_LLM
+        value: meta-llama/llama-3.3-70b-instruct:free
+      - key: CHAT_USE_FALLBACK
+        value: true
+      - key: CHAT_USE_ENHANCEMENT
+        value: false
+      - key: CHAT_USE_JUDGE
+        value: false
+      - key: CHAT_TEMPERATURE
+        value: 0.2
+      - key: CHAT_TOP_P
+        value: 0.8
+      - key: CHAT_MAX_TOKENS
+        value: 450
+      - key: CHAT_TIMEOUT_MS
+        value: 12000
+      - key: EMBEDDING_MODEL
+        value: sentence-transformers/all-MiniLM-L6-v2
+      - key: RAG_TOP_K
+        value: 5
+      - key: RAG_MIN_SCORE
+        value: 0.68
+
+  - type: web
+    name: bertolli-pro-900-frontend
+    env: static
+    rootDir: frontend
+    buildCommand: |
+      if [ -n "$BERTOLLI_API_BASE_URL" ]; then printf 'window.BERTOLLI_API_BASE_URL = "%s";\n' "$BERTOLLI_API_BASE_URL" > js/config.js; fi
+    staticPublishPath: .
+    envVars:
+      - key: BERTOLLI_API_BASE_URL
+        sync: false
