@@ -64,6 +64,13 @@
     const hasItems = cart.quantity > 0;
 
     if (elements.count) elements.count.textContent = count;
+    const cartLink = document.querySelector(".cart-link");
+    if (cartLink) {
+        cartLink.setAttribute(
+            "aria-label",
+            `Ir al carrito, ${cart.quantity} producto${cart.quantity === 1 ? "" : "s"} agregado${cart.quantity === 1 ? "" : "s"}`
+        );
+    }
     if (elements.quantity) elements.quantity.textContent = count;
     if (elements.subtotal) elements.subtotal.textContent = `${formatMoney(total)} COP`;
     if (elements.summaryText) {
@@ -107,6 +114,7 @@
     if (hasBackend()) {
       try {
         elements.checkout.disabled = true;
+        elements.checkout.setAttribute("aria-busy", "true");
         setFeedback("Preparando checkout seguro...", "");
 
         const leadEmail = document.getElementById("lead-email")?.value.trim() || null;
@@ -133,6 +141,7 @@
         setFeedback("No se pudo abrir Stripe. Continuamos con cotizacion local.", "error");
       } finally {
         elements.checkout.disabled = false;
+        elements.checkout.removeAttribute("aria-busy");
       }
     }
 

@@ -143,15 +143,20 @@
     });
 
     dialog.addEventListener("keydown", (event) => {
-      if (event.key === "ArrowLeft") {
-        event.preventDefault();
-        move(-1);
-      }
+        if (event.key === "Escape") {
+            event.preventDefault();
+            closeDialog();
+        }
 
-      if (event.key === "ArrowRight") {
-        event.preventDefault();
-        move(1);
-      }
+        if (event.key === "ArrowLeft") {
+            event.preventDefault();
+            move(-1);
+        }
+
+        if (event.key === "ArrowRight") {
+            event.preventDefault();
+            move(1);
+        }
     });
 
     setGalleryExpanded(false);
@@ -207,6 +212,7 @@
       };
 
       submit.disabled = true;
+      submit.setAttribute("aria-busy", "true");
       setStatus("Enviando solicitud...", "");
 
       try {
@@ -223,8 +229,9 @@
         setStatus("Solicitud recibida localmente. El backend no esta disponible en este momento.", "success");
         form.reset();
       } finally {
-        submit.disabled = false;
-      }
+            submit.disabled = false;
+            submit.removeAttribute("aria-busy");
+        }
     });
   }
 

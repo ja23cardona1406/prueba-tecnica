@@ -1865,3 +1865,170 @@ textarea {
     grid-template-columns: 1fr;
   }
 }
+
+/* ────────────────────────────────────────────────
+   Commit 9: Accessibility and responsive polish
+   ──────────────────────────────────────────────── */
+
+/* Stronger keyboard focus */
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 4px;
+}
+
+.button:focus-visible,
+.icon-button:focus-visible,
+.faq-question:focus-visible,
+.gallery-item:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+
+/* Better disabled states */
+button:disabled,
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  transform: none;
+}
+
+button:disabled:hover,
+.button:disabled:hover {
+  transform: none;
+}
+
+/* Better status feedback */
+.status {
+  min-height: 1.5rem;
+}
+
+.status[data-state="success"] {
+  color: var(--success, #5b7a4a);
+}
+
+.status[data-state="error"] {
+  color: var(--danger, #a14233);
+}
+
+/* FAQ accessibility polish */
+.faq-question {
+  outline-offset: 6px;
+}
+
+.faq-question[aria-expanded="true"] {
+  color: var(--accent);
+}
+
+.faq-question[aria-expanded="true"]::after {
+  content: "−";
+  background: var(--gold);
+  color: var(--black);
+}
+
+/* Dialog fallback polish */
+.lightbox[open] {
+  display: block;
+}
+
+/* Assistant responsive polish */
+.assistant-panel[hidden] {
+  display: none;
+}
+
+.assistant-message--bot {
+  border: 1px solid rgba(201, 168, 76, 0.12);
+}
+
+.assistant-message--user {
+  border: 1px solid rgba(201, 168, 76, 0.2);
+}
+
+/* Safer mobile spacing */
+@media (max-width: 760px) {
+  body {
+    font-size: 17px;
+  }
+
+  .header__actions {
+    gap: 0.5rem;
+  }
+
+  .nav__list {
+    scrollbar-width: thin;
+  }
+
+  .hero__content {
+    min-height: 620px;
+  }
+
+  .cart-layout,
+  .cta-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lightbox {
+    width: calc(100% - 24px);
+  }
+
+  .lightbox__body {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .site-header {
+    position: sticky;
+  }
+
+  .header__inner {
+    gap: 0.85rem;
+  }
+
+  .brand__mark {
+    width: 36px;
+    height: 36px;
+  }
+
+  .icon-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .hero__content {
+    min-height: 600px;
+  }
+
+  .hero__price {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .spec-table {
+    min-width: 560px;
+  }
+
+  .assistant-toggle {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    min-height: 56px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

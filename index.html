@@ -62,10 +62,10 @@
           <span aria-hidden="true">◐</span>
         </button>
 
-        <a class="icon-button cart-link" href="#carrito" aria-label="Ir al carrito">
-          🛒
+       <a class="icon-button cart-link" href="#carrito" aria-label="Ir al carrito, 0 productos agregados">
+          <span aria-hidden="true">🛒</span>
           <span class="cart-count" id="cart-count" aria-hidden="true">0</span>
-        </a>
+       </a>
 
         <a class="button button--small" href="#cotizacion">Cotizar</a>
       </div>
@@ -790,13 +790,14 @@
           <form class="assistant-form" id="assistant-form">
             <label class="sr-only" for="assistant-input">Mensaje para el asesor</label>
 
-            <input
-              id="assistant-input"
-              name="message"
-              autocomplete="off"
-              placeholder="Pregunta por el producto"
-              required
-            >
+             <input
+                id="assistant-input"
+                name="message"
+                autocomplete="off"
+                placeholder="Pregunta por el producto"
+                aria-label="Escribe tu pregunta sobre la Bertolli Pro 900"
+                required
+              >
 
             <button class="button button--primary" type="submit">Enviar</button>
           </form>

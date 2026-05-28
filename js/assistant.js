@@ -116,6 +116,7 @@
     addMessage("user", question);
     elements.input.value = "";
     elements.submit.disabled = true;
+    elements.submit.setAttribute("aria-busy", "true");
 
     const pending = addMessage("bot", "Consultando...");
     const pendingText = pending.querySelector("p");
@@ -127,6 +128,7 @@
       pendingText.textContent = localAnswer(question);
     } finally {
       elements.submit.disabled = false;
+      elements.submit.removeAttribute("aria-busy");
       elements.input.focus();
     }
   }
@@ -147,10 +149,10 @@
     elements.form.addEventListener("submit", handleSubmit);
 
     elements.panel.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") {
-        event.preventDefault();
-        setPanelOpen(false);
-      }
+        if (event.key === "Escape") {
+            event.preventDefault();
+            setPanelOpen(false);
+        }
     });
   }
 
