@@ -51,9 +51,19 @@
           </ul>
         </nav>
 
-        <div class="header__actions">
-          <a class="button button--small" href="#cotizacion">Cotizar</a>
-        </div>
+       <div class="header__actions">
+        <button
+          class="icon-button theme-toggle"
+          type="button"
+          id="theme-toggle"
+          aria-label="Cambiar modo de color"
+          aria-pressed="false"
+        >
+          <span aria-hidden="true">◐</span>
+        </button>
+
+        <a class="button button--small" href="#cotizacion">Cotizar</a>
+      </div>
       </div>
     </header>
 
@@ -179,61 +189,133 @@
       </section>
 
       <section class="section section--tinted" id="galeria" aria-labelledby="gallery-title">
-        <div class="container">
-          <div class="gallery-head">
-            <div>
-              <p class="section__eyebrow">Galería</p>
-              <h2 class="section__title" id="gallery-title">Detalles visibles antes de cotizar</h2>
+          <div class="container">
+            <div class="gallery-head">
+              <div>
+                <p class="section__eyebrow">Galería</p>
+                <h2 class="section__title" id="gallery-title">Detalles visibles antes de cotizar</h2>
+              </div>
+
+              <button class="button button--ghost" type="button" id="gallery-toggle" aria-expanded="false">
+                Ver galería completa
+              </button>
+            </div>
+
+            <div class="gallery-grid" id="gallery-grid">
+              <button
+                class="gallery-item"
+                type="button"
+                data-src="assets/img/bertolli-pro-900-hero.jpg"
+                data-title="Vista premium frontal"
+                data-alt="Vista frontal de la Bertolli Pro 900 en cocina moderna"
+                aria-label="Abrir imagen vista premium frontal"
+              >
+                <img
+                  src="assets/img/bertolli-pro-900-hero.jpg"
+                  alt="Vista frontal de la Bertolli Pro 900 en cocina moderna"
+                  width="1717"
+                  height="916"
+                  loading="lazy"
+                >
+                <span>Vista premium</span>
+              </button>
+
+              <button
+                class="gallery-item"
+                type="button"
+                data-src="assets/img/gallery-burners.svg"
+                data-title="Cubierta de cinco hornillas"
+                data-alt="Cubierta superior con cinco hornillas y parrillas de hierro fundido"
+                aria-label="Abrir imagen cubierta de cinco hornillas"
+              >
+                <img
+                  src="assets/img/gallery-burners.svg"
+                  alt="Cubierta superior con cinco hornillas y parrillas de hierro fundido"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                >
+                <span>5 hornillas</span>
+              </button>
+
+              <button
+                class="gallery-item"
+                type="button"
+                data-src="assets/img/gallery-controls.svg"
+                data-title="Controles metálicos frontales"
+                data-alt="Panel frontal con perillas metálicas de control"
+                aria-label="Abrir imagen controles metálicos frontales"
+              >
+                <img
+                  src="assets/img/gallery-controls.svg"
+                  alt="Panel frontal con perillas metálicas de control"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                >
+                <span>Controles</span>
+              </button>
+
+              <button
+                class="gallery-item"
+                type="button"
+                data-src="assets/img/gallery-oven.svg"
+                data-title="Horno amplio con doble vidrio"
+                data-alt="Horno amplio con doble vidrio templado y rejillas internas"
+                aria-label="Abrir imagen horno amplio"
+              >
+                <img
+                  src="assets/img/gallery-oven.svg"
+                  alt="Horno amplio con doble vidrio templado y rejillas internas"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                >
+                <span>Horno amplio</span>
+              </button>
+
+              <button
+                class="gallery-item"
+                type="button"
+                data-src="assets/img/gallery-grates.svg"
+                data-title="Parrillas robustas"
+                data-alt="Detalle de parrillas robustas de hierro fundido"
+                aria-label="Abrir imagen parrillas robustas"
+                data-gallery-extra
+                hidden
+              >
+                <img
+                  src="assets/img/gallery-grates.svg"
+                  alt="Detalle de parrillas robustas de hierro fundido"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                >
+                <span>Parrillas</span>
+              </button>
+
+              <button
+                class="gallery-item"
+                type="button"
+                data-src="assets/img/gallery-kitchen.svg"
+                data-title="Integración en cocina"
+                data-alt="Bertolli Pro 900 integrada en una cocina contemporánea"
+                aria-label="Abrir imagen integración en cocina"
+                data-gallery-extra
+                hidden
+              >
+                <img
+                  src="assets/img/gallery-kitchen.svg"
+                  alt="Bertolli Pro 900 integrada en una cocina contemporánea"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                >
+                <span>Ambiente</span>
+              </button>
             </div>
           </div>
-
-          <div class="gallery-grid">
-            <figure class="gallery-item">
-              <img
-                src="assets/img/bertolli-pro-900-hero.jpg"
-                alt="Vista frontal de la Bertolli Pro 900 en cocina moderna"
-                width="1717"
-                height="916"
-                loading="lazy"
-              >
-              <figcaption>Vista premium</figcaption>
-            </figure>
-
-            <figure class="gallery-item">
-              <img
-                src="assets/img/gallery-burners.svg"
-                alt="Cubierta superior con cinco hornillas y parrillas de hierro fundido"
-                width="1200"
-                height="800"
-                loading="lazy"
-              >
-              <figcaption>5 hornillas</figcaption>
-            </figure>
-
-            <figure class="gallery-item">
-              <img
-                src="assets/img/gallery-controls.svg"
-                alt="Panel frontal con perillas metálicas de control"
-                width="1200"
-                height="800"
-                loading="lazy"
-              >
-              <figcaption>Controles</figcaption>
-            </figure>
-
-            <figure class="gallery-item">
-              <img
-                src="assets/img/gallery-oven.svg"
-                alt="Horno amplio con doble vidrio templado y rejillas internas"
-                width="1200"
-                height="800"
-                loading="lazy"
-              >
-              <figcaption>Horno amplio</figcaption>
-            </figure>
-          </div>
-        </div>
-      </section>
+        </section>
 
       <section class="section" id="especificaciones" aria-labelledby="specs-title">
         <div class="container">
@@ -369,66 +451,176 @@
           <div class="faq-list">
             <article class="faq-item">
               <h3>
-                <button class="faq-question" type="button" aria-expanded="false">
+                <button
+                  class="faq-question"
+                  type="button"
+                  id="faq-q-1"
+                  aria-expanded="false"
+                  aria-controls="faq-a-1"
+                >
                   ¿Qué tipo de gas usa la Bertolli Pro 900?
                 </button>
               </h3>
-              <div class="faq-answer">
-                Puede configurarse para gas natural o GLP. La conversión debe
-                hacerla un técnico certificado con el kit correspondiente.
+
+              <div
+                class="faq-answer"
+                id="faq-a-1"
+                role="region"
+                aria-labelledby="faq-q-1"
+                hidden
+              >
+                Puede configurarse para gas natural o GLP. La conversión debe hacerla
+                un técnico certificado con el kit correspondiente.
               </div>
             </article>
 
             <article class="faq-item">
               <h3>
-                <button class="faq-question" type="button" aria-expanded="false">
+                <button
+                  class="faq-question"
+                  type="button"
+                  id="faq-q-2"
+                  aria-expanded="false"
+                  aria-controls="faq-a-2"
+                >
                   ¿Cuáles son sus dimensiones?
                 </button>
               </h3>
-              <div class="faq-answer">
-                La referencia usada en esta landing es 90 cm de ancho, 60 cm de
-                fondo y 89 cm de alto.
+
+              <div
+                class="faq-answer"
+                id="faq-a-2"
+                role="region"
+                aria-labelledby="faq-q-2"
+                hidden
+              >
+                La referencia usada en esta landing es 90 cm de ancho, 60 cm de fondo
+                y 89 cm de alto.
               </div>
             </article>
 
             <article class="faq-item">
               <h3>
-                <button class="faq-question" type="button" aria-expanded="false">
+                <button
+                  class="faq-question"
+                  type="button"
+                  id="faq-q-3"
+                  aria-expanded="false"
+                  aria-controls="faq-a-3"
+                >
                   ¿Cómo se limpia la cubierta?
                 </button>
               </h3>
-              <div class="faq-answer">
-                Se recomienda paño suave, agua tibia y jabón neutro. Evita
-                abrasivos sobre acero inoxidable y seca la superficie al final.
+
+              <div
+                class="faq-answer"
+                id="faq-a-3"
+                role="region"
+                aria-labelledby="faq-q-3"
+                hidden
+              >
+                Se recomienda paño suave, agua tibia y jabón neutro. Evita abrasivos
+                sobre acero inoxidable y seca la superficie al final.
               </div>
             </article>
 
             <article class="faq-item">
               <h3>
-                <button class="faq-question" type="button" aria-expanded="false">
+                <button
+                  class="faq-question"
+                  type="button"
+                  id="faq-q-4"
+                  aria-expanded="false"
+                  aria-controls="faq-a-4"
+                >
                   ¿Incluye garantía?
                 </button>
               </h3>
-              <div class="faq-answer">
-                La propuesta contempla 24 meses de garantía limitada por defectos
-                de fabricación, sujeta a instalación correcta.
+
+              <div
+                class="faq-answer"
+                id="faq-a-4"
+                role="region"
+                aria-labelledby="faq-q-4"
+                hidden
+              >
+                La propuesta contempla 24 meses de garantía limitada por defectos de
+                fabricación, sujeta a instalación correcta.
               </div>
             </article>
 
             <article class="faq-item">
               <h3>
-                <button class="faq-question" type="button" aria-expanded="false">
+                <button
+                  class="faq-question"
+                  type="button"
+                  id="faq-q-5"
+                  aria-expanded="false"
+                  aria-controls="faq-a-5"
+                >
                   ¿El horno también funciona a gas?
                 </button>
               </h3>
-              <div class="faq-answer">
-                Sí. El concepto de producto mantiene operación a gas para cubierta
-                y horno, con control frontal independiente.
+
+              <div
+                class="faq-answer"
+                id="faq-a-5"
+                role="region"
+                aria-labelledby="faq-q-5"
+                hidden
+              >
+                Sí. El concepto de producto mantiene operación a gas para cubierta y
+                horno, con control frontal independiente.
               </div>
             </article>
           </div>
         </div>
       </section>
+
+    <section class="section cta-band" id="cotizacion" aria-labelledby="cta-title">
+      <div class="container cta-grid">
+        <div>
+          <p class="section__eyebrow">Cotización</p>
+          <h2 class="section__title" id="cta-title">Agenda una asesoría para tu cocina</h2>
+          <p class="section__lead">
+            Recibe confirmación de disponibilidad, instalación recomendada y condiciones
+            de garantía para tu ciudad.
+          </p>
+
+          <p>
+            <a
+              class="button button--whatsapp"
+              href="https://wa.me/573001234567?text=Hola%2C%20quiero%20cotizar%20la%20Bertolli%20Pro%20900"
+              target="_blank"
+              rel="noopener"
+            >
+              WhatsApp
+            </a>
+          </p>
+        </div>
+
+        <form class="lead-form" id="lead-form">
+          <div class="form-row">
+            <label for="lead-name">Nombre</label>
+            <input id="lead-name" name="name" autocomplete="name" required minlength="2" placeholder="Tu nombre">
+          </div>
+
+          <div class="form-row">
+            <label for="lead-email">Email</label>
+            <input id="lead-email" name="email" type="email" autocomplete="email" required placeholder="correo@ejemplo.com">
+          </div>
+
+          <div class="form-row">
+            <label for="lead-message">Mensaje</label>
+            <textarea id="lead-message" name="message" required placeholder="Ciudad, tipo de gas y dudas principales"></textarea>
+          </div>
+
+          <button class="button button--primary" type="submit">Enviar solicitud</button>
+          <p class="status" id="lead-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
     </main>
         <footer class="site-footer">
       <div class="container">
@@ -470,10 +662,36 @@
         </div>
 
         <div class="footer-bottom">
-          <span>&copy; 2026 Bertolli Pro. Demo frontend.</span>
+          <span>&copy; <span id="current-year">2026</span> Bertolli Pro. Demo frontend.</span>
           <span>HTML5, CSS3 y JavaScript vanilla.</span>
         </div>
       </div>
     </footer>
+
+    <dialog class="lightbox" id="lightbox" aria-labelledby="lightbox-title">
+  <div class="lightbox__body">
+    <div class="lightbox__top">
+      <h2 id="lightbox-title">Galería Bertolli Pro 900</h2>
+
+      <button class="icon-button" type="button" id="lightbox-close" aria-label="Cerrar galería">
+        ✕
+      </button>
+    </div>
+
+    <img
+      class="lightbox__image"
+      id="lightbox-image"
+      src="assets/img/bertolli-pro-900-hero.jpg"
+      alt=""
+    >
+
+    <div class="lightbox__controls">
+      <button class="button button--ghost" type="button" id="lightbox-prev">Anterior</button>
+      <button class="button button--ghost" type="button" id="lightbox-next">Siguiente</button>
+    </div>
+  </div>
+</dialog>
+
+<script src="js/main.js"></script>
   </body>
 </html>
