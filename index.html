@@ -51,7 +51,7 @@
           </ul>
         </nav>
 
-       <div class="header__actions">
+      <div class="header__actions">
         <button
           class="icon-button theme-toggle"
           type="button"
@@ -62,8 +62,12 @@
           <span aria-hidden="true">◐</span>
         </button>
 
+        <a class="icon-button cart-link" href="#carrito" aria-label="Ir al carrito">
+          🛒
+          <span class="cart-count" id="cart-count" aria-hidden="true">0</span>
+        </a>
+
         <a class="button button--small" href="#cotizacion">Cotizar</a>
-      </div>
       </div>
     </header>
 
@@ -98,9 +102,9 @@
               Solicitar cotización
             </a>
 
-            <a class="button button--secondary" href="#caracteristicas">
-              Ver características
-            </a>
+            <button class="button button--secondary" type="button" data-add-to-cart>
+              Agregar al carrito
+            </button>
           </div>
 
           <div class="hero__metrics" aria-label="Datos destacados">
@@ -577,6 +581,69 @@
         </div>
       </section>
 
+      <section class="section" id="carrito" aria-labelledby="cart-title">
+        <div class="container">
+          <div class="cart-head">
+            <div>
+              <p class="section__eyebrow">Carrito local</p>
+              <h2 class="section__title" id="cart-title">Cotización preparada en tu navegador</h2>
+            </div>
+
+            <button class="button button--ghost" type="button" data-add-to-cart>
+              Agregar Bertolli Pro 900
+            </button>
+          </div>
+
+          <div class="cart-layout">
+            <article class="cart-panel">
+              <div class="cart-product">
+                <img
+                  src="assets/img/bertolli-pro-900-hero.jpg"
+                  width="1717"
+                  height="916"
+                  alt="Bertolli Pro 900 en acero inoxidable"
+                  loading="lazy"
+                >
+
+                <div>
+                  <h3>Bertolli Pro 900</h3>
+                  <p>Cocina a gas profesional de 5 hornillas, 90 cm, acero inoxidable.</p>
+                  <p><strong>$4.990.000 COP</strong></p>
+                </div>
+              </div>
+
+              <div class="cart-controls" aria-label="Controles de cantidad">
+                <div class="quantity-control">
+                  <button type="button" id="cart-decrement" aria-label="Disminuir cantidad">-</button>
+                  <output id="cart-quantity" aria-live="polite">0</output>
+                  <button type="button" id="cart-increment" aria-label="Aumentar cantidad">+</button>
+                </div>
+
+                <button class="button button--ghost" type="button" id="cart-clear">
+                  Limpiar carrito
+                </button>
+              </div>
+            </article>
+
+            <aside class="cart-panel cart-summary" aria-label="Resumen del carrito">
+              <h3>Resumen</h3>
+              <p id="cart-summary-text">No hay productos agregados.</p>
+
+              <div class="cart-total">
+                <span>Subtotal</span>
+                <strong id="cart-subtotal">$0 COP</strong>
+              </div>
+
+              <button class="button button--primary" type="button" id="cart-checkout">
+                Comprar ahora
+              </button>
+
+              <p class="status" id="cart-feedback" role="status" aria-live="polite"></p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
     <section class="section cta-band" id="cotizacion" aria-labelledby="cta-title">
       <div class="container cta-grid">
         <div>
@@ -693,5 +760,6 @@
 </dialog>
 
 <script src="js/main.js"></script>
+<script src="js/cart.js"></script>
   </body>
 </html>
